@@ -1,17 +1,71 @@
 <?php
 function logged_in() {
-    return isset($_SESSION['user_id']);
+    return isset($_SESSION['id']);
 }
 
-function login_check($email, $password) {
+function login_check($email, $passwordx) {
+  $servername = "localhost";
+$username = "kketrades";
+$password = "Sifed32365042?";
+$dbname = "pitstop_upload";
 
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+         // Check user is exist in the database
+ $query    = "SELECT * FROM `db_users` WHERE `email`='$email'
+ AND `password`='" . md5($passwordx) . "'";
+$result = mysqli_query($conn, $query) or die(mysql_error());
+
+if (mysqli_num_rows($result) == 1) {
+
+  $row = mysqli_fetch_assoc($result);
+  return $row['id'];
+
+} else {
+  
+  return false;
+
+}
+
+mysqli_close($conn);
 }
 
 function user_data(){
+  
 
+  $servername = "localhost";
+  $username = "kketrades";
+  $password = "Sifed32365042?";
+  $dbname = "pitstop_upload";
+  
+  // Create connection
+  $conn = mysqli_connect($servername, $username, $password, $dbname);
+  // Check connection
+  if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+  }
+  $args = func_get_args();
+  $fields = '`'.implode('`, `', $args).'`';
+  
+  $sql = "SELECT $fields FROM `db_users` WHERE `id`=".$_SESSION['id'];
+  $query = mysqli_query($conn, $sql);
+
+  $query_result = mysqli_fetch_assoc($query);
+  foreach ($args as $field) {
+    $args[$field] = $query_result[$field];
+  }
+ 
+  return $args;
+  
+  mysqli_close($conn);
 }
 
-function user_register($email, $name, $password) {
+function user_register($email, $name, $passwordx) {
     // $email = mysql_real_escape_string($email);
     // $name = mysql_real_escape_string($name);
     // mysql_query("INSERT INTO `db_users` VALUES ('', '$email', '$name', '".md5($password)."')");
@@ -32,7 +86,7 @@ if (!$conn) {
 }
 
 $sql = "INSERT INTO db_users (email, name, password)
-VALUES ('$email', '$name', '".md5($password)."')";
+VALUES ('$email', '$name', '".md5($passwordx)."')";
 
 
 if (mysqli_query($conn, $sql)) {
@@ -62,20 +116,21 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT COUNT(`id`) FROM `db_users` WHERE `email`='$email'";
-
 
 $sql = "SELECT COUNT(`id`) FROM `db_users` WHERE `email`='$email'";
-    $result = mysqli_query($conn, $sql);
-    $row=mysqli_fetch_row($result);
-    echo $row[0];   
-
-    if ($row[0] > 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    
+$result = mysqli_query($conn, $sql);
+        // return (mysqli_fetch_field($result, 0) == 1) ? true : false;
+        $result = mysqli_query($conn, $sql);
+        $row=mysqli_fetch_row($result);
+        echo $row[0];   
+    
+        if ($row[0] > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
 
 mysqli_close($conn);
 }

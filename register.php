@@ -1,5 +1,11 @@
 <?php
-    include 'init.php';
+    include 'init.php';    
+
+if(logged_in()){
+    header('Location: index.php');
+    exit();
+}
+
     include 'template/header.php';
     ?>
 
@@ -26,6 +32,8 @@
     
                 if(user_exists($register_email) === true) {
                     $errors[] = 'That email has already been registered';
+                }else{
+                    echo "success!";
                 }
             }   
             
@@ -35,9 +43,10 @@
                 }
             } else {
                 $register = user_register($register_email, $register_name, $register_password);
-                $_SESSION['user_id'] = $register;
+                $_SESSION['id'] = $register;
                 header('Location: index.php');
-                exit();
+                $_SESSION['id'];
+                    exit();
             }
         }           
     
