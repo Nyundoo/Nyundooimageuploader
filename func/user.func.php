@@ -19,7 +19,7 @@ if (!$conn) {
          // Check user is exist in the database
  $query    = "SELECT * FROM `db_users` WHERE `email`='$email'
  AND `password`='" . md5($passwordx) . "'";
-$result = mysqli_query($conn, $query) or die(mysql_error());
+$result = mysqli_query($conn, $query) or die(mysqli_error());
 
 if (mysqli_num_rows($result) == 1) {
 

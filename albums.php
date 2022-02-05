@@ -20,7 +20,7 @@ if (empty($albums)) {
     foreach ($albums as $album) {
         echo '<p><a href="view_album.php?album_id=', $album['id'], '">', $album['name'], '</a> (', $album['count'], ' images) <br />
         ', $album['description'], '...<br />
-        <a href="edit_album.php?album_id= ' , $album['id'] , '">Edit</a> / <a href="delete_album.php?album_id=', $album['id'] ,'">Delete</a>
+        <a href="edit_album.php?album_id=', $album['id'] ,'">Edit</a> / <a href="delete_album.php?album_id=', $album['id'] ,'">Delete</a>
         </p>';
     }
 }

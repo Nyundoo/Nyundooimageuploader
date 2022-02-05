@@ -43,7 +43,6 @@ if (isset($_POST['album_name'], $_POST['album_description'])){
         <p>Name: </br><input type="text" name="album_name"  maxlength="55" /></p>
         <p>Description: </br><textarea name="album_description" rows="6" cols="35" maxlenght="255"></textarea></p>
         <p><input type="submit" value="Create" /></p>
-        <p><input type="submit" value="Register" /></p>
     </form>
 
 <?php
