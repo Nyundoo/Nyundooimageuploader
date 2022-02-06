@@ -16,7 +16,7 @@ include 'template/header.php';
 $album_id = $_GET['album_id'];
 $album_data = album_data($album_id, 'name', 'description');
 
-echo '<h3>' ,$album_data['name'], '</h3><p>' ,$album_data['description'], '</p>';
+echo '<h3>' ,$album_data['name'], '</h3><p>' ,$album_data['description'], '</p><p>' ,$album_category['category'], '</p>';
 
 $album_id = $_GET['album_id'];
 

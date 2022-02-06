@@ -8,7 +8,7 @@ if (!logged_in()){
 
 include 'template/header.php';
 ?>
-<h3>Upload image</h3>
+<h3 style="padding-top: 30px;">Upload image</h3>
 <?php
 
 if (isset($_FILES['image'], $_POST['album_id'])){

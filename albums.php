@@ -9,7 +9,7 @@ if (!logged_in()) {
 include 'template/header.php';
 ?>
 
-<h3>Albums</h3>
+<h3 style="padding-top: 30px;">Albums</h3>
 
 <?php
 $albums = get_albums();
@@ -22,7 +22,7 @@ if (empty($albums)) {
         ', $album['description'], '...<br />
         <a href="edit_album.php?album_id=', $album['id'] ,'">Edit</a> / <a href="delete_album.php?album_id=', $album['id'] ,'">Delete</a>
         </p>';
-    }
+    } 
 }
 
 include 'template/footer.php';

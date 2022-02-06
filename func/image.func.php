@@ -19,7 +19,6 @@ VALUES ('".$_SESSION['id']."', '$album_id', UNIX_TIMESTAMP(), '$image_ext')";
         $result = mysqli_query($conn, $sql);
 
          $image_id = mysqli_insert_id($conn);
-         ;
 
          $image_file = $image_id.'.'.$image_ext;
 

@@ -3,7 +3,7 @@
 
 if (logged_in()) {
    $user_data = user_data('name');
-    echo 'Hello', $user_data['name'];
+    echo 'Hello ', $user_data['name'];
 } else{
     
 ?>
